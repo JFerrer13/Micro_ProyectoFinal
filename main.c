@@ -1,14 +1,63 @@
 #include "stm32f3xx.h"                  // Device header
+#include "string.h"
+
 #include "configUSART.h"
+#include "basicFunctions.h"
+
+char dato;
+char string[64];
+char *comando;
+uint8_t indice = 0;
+uint8_t nuevoComando = 0;
 
 int main () {
 	USART2_config(115200);	
 	
 	welcomeMessage();
 	
+	nuevoComando = 0;
+	
 	while (1){
-		
+		comando = strtok(string, " ");
+		if (nuevoComando) {
+			if(strcmp(comando, "RD") == 0){//-----------------Basic commands
+				rd();
+			} else if (strcmp(comando, "RM") == 0) {
+				rm();
+			} else if (strcmp(comando, "MD") == 0) {
+				md();
+			} else if (strcmp(comando, "MM") == 0) {
+				mm();
+			} else if (strcmp(comando, "BF") == 0) {
+				bf();
+			} else if (strcmp(comando, "RUN") == 0) {
+				run();
+			} else if (strcmp(comando, "CALL") == 0) {
+				call();
+			} else if (strcmp(comando, "H") == 0){//----------Extra comnnads
+				showHelp();
+			}else {
+				unknownCommand();
+			}
+			USART2_putString(">> ");
+			nuevoComando = 0;
+		}
 	}
 }
 
+
+
+void USART2_IRQHandler() {
+	if(USART2->ISR & USART_ISR_RXNE){
+		dato = USART2->RDR;
+		
+		if(dato != '\r'){
+			string[indice++] = dato - 32;
+		}	else {
+			string[indice++] = '\0';
+			indice = 0;
+			nuevoComando = 1;
+		}
+	}
+}
 

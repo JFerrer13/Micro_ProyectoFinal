@@ -1,0 +1,9 @@
+-c --cpu Cortex-M4.fp.sp -D__EVAL -g -O0 --apcs=interwork --split_sections
+-I.\RTE\Device\STM32F303K8Tx
+-I.\RTE\_Target_1
+-IC:\Users\JAFM1\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+-IC:\Users\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include
+-IC:\Users\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\STM32F3xx_HAL_Driver\Inc
+-IC:\Users\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\STM32F3xx_HAL_Driver\Inc\Legacy
+-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F303x8 -D_RTE_  --preinclude="Pre_Include_Global.h"
+-o .\objects\stm32f3xx_hal_rcc.o --omf_browse .\objects\stm32f3xx_hal_rcc.crf --depend .\objects\stm32f3xx_hal_rcc.d --feedback ".\Objects\Proyecto_final.fed" "C:\Users\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc.c"

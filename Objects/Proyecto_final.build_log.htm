@@ -9,38 +9,66 @@ License Information: Javier FErrer, Galileo, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.35.0.2
-Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
-C Compiler:      ArmClang.exe V6.16
-Assembler:       Armasm.exe V6.16
-Linker/Locator:  ArmLink.exe V6.16
-Library Manager: ArmAr.exe V6.16
-Hex Converter:   FromElf.exe V6.16
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
 CPU DLL:         SARMCM3.DLL V5.35.0.2
 Dialog DLL:      DCM.DLL V1.17.3.0
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-C:\Users\JAFM1\Documents\LabsMicro\Proyecto_final\Proyecto_final.uvprojx
-Project File Date:  11/08/2021
+C:\Users\JAFM1\Documents\LabsMicro\Micro_ProyectoFinal\Proyecto_final.uvprojx
+Project File Date:  11/13/2021
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.16', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
+Clean started - Project: 'Proyecto_final'
+   deleting intermediate output files for target 'Target 1'
+Note: source file '.\basicFunctions.s' - object file renamed from '.\Objects\basicFunctions.o' to '.\Objects\basicfunctions_1.o'.
 compiling main.c...
 compiling configUSART.c...
+configUSART.c(7): warning:  #61-D: integer operation result is out of range
+        GPIOA->MODER |= (0x02<<4) | (0x02<<30);
+configUSART.c: 1 warning, 0 errors
+compiling basicFunctions.c...
+assembling basicFunctions.s...
 compiling stm32f3xx_hal.c...
-compiling stm32f3xx_hal_gpio.c...
-compiling stm32f3xx_hal_flash_ex.c...
-compiling stm32f3xx_hal_flash.c...
 compiling stm32f3xx_hal_cortex.c...
+compiling stm32f3xx_hal_flash.c...
+compiling stm32f3xx_hal_flash_ex.c...
+compiling stm32f3xx_hal_gpio.c...
+compiling stm32f3xx_hal_rcc.c...
+compiling stm32f3xx_hal_rcc_ex.c...
 assembling startup_stm32f303x8.s...
 compiling system_stm32f3xx.c...
-compiling stm32f3xx_hal_rcc_ex.c...
-compiling stm32f3xx_hal_rcc.c...
 linking...
-Program Size: Code=1098 RO-data=606 RW-data=4 ZI-data=1704  
-".\Objects\Proyecto_final.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=3062 RO-data=562 RW-data=20 ZI-data=1820  
+".\Objects\Proyecto_final.axf" - 0 Error(s), 1 Warning(s).
+
+*** Performing Cross-Module-Optimization:
+compiling main.c...
+compiling configUSART.c...
+configUSART.c(7): warning:  #61-D: integer operation result is out of range
+        GPIOA->MODER |= (0x02<<4) | (0x02<<30);
+configUSART.c: 1 warning, 0 errors
+compiling basicFunctions.c...
+compiling stm32f3xx_hal.c...
+compiling stm32f3xx_hal_cortex.c...
+compiling stm32f3xx_hal_flash.c...
+compiling stm32f3xx_hal_flash_ex.c...
+compiling stm32f3xx_hal_gpio.c...
+compiling stm32f3xx_hal_rcc.c...
+compiling stm32f3xx_hal_rcc_ex.c...
+compiling system_stm32f3xx.c...
+linking...
+Program Size: Code=3062 RO-data=562 RW-data=20 ZI-data=1820  
+".\Objects\Proyecto_final.axf" - 0 Error(s), 1 Warning(s).
+*** Completed Cross-Module-Optimization after 2 iteration(s).
 
 <h2>Software Packages used:</h2>
 
@@ -62,7 +90,7 @@ Package Vendor: Keil
    * Component: Startup Version: 1.11.2
 
 <h2>Collection of Component include folders:</h2>
-  .\RTE\Device\STM32F303K6Tx
+  .\RTE\Device\STM32F303K8Tx
   .\RTE\_Target_1
   C:\Users\JAFM1\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
   C:\Users\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include
@@ -74,16 +102,16 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.5.0
 
    * Component: Keil.Standalone::Device:STM32Cube HAL:COMMON:1.11.2
-      Include file:  Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal.h
-      Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal.c
       Include file:  MDK\Templates\Inc\stm32f3xx_hal_conf.h
+      Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal.c
       Source file:   MDK\Templates\Src\stm32f3xx_hal_msp.c
+      Source file:   MDK\Templates\Src\stm32f3xx_it.c
+      Include file:  MDK\Templates\Inc\main.h
+      Source file:   MDK\Templates\Src\main.c
+      Include file:  Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal.h
       Include file:  Drivers\STM32F3xx_HAL_Driver\Inc\Legacy\stm32_hal_legacy.h
       Include file:  Drivers\STM32F3xx_HAL_Driver\Inc\stm32f3xx_hal_def.h
-      Source file:   MDK\Templates\Src\stm32f3xx_it.c
-      Source file:   MDK\Templates\Src\main.c
       Include file:  MDK\Templates\Inc\stm32f3xx_it.h
-      Include file:  MDK\Templates\Inc\main.h
 
    * Component: Keil.Standalone::Device:STM32Cube HAL:CORTEX:1.11.2
       Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_cortex.c
@@ -96,15 +124,15 @@ Package Vendor: Keil
       Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_gpio.c
 
    * Component: Keil.Standalone::Device:STM32Cube HAL:RCC:1.11.2
-      Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc_ex.c
       Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc.c
+      Source file:   Drivers\STM32F3xx_HAL_Driver\Src\stm32f3xx_hal_rcc_ex.c
 
    * Component: Keil.Standalone::Device:Startup:1.11.2
-      Source file:   Drivers\CMSIS\Device\ST\STM32F3xx\Source\Templates\system_stm32f3xx.c
-      Source file:   MDK\Device\Source\ARM\STM32F3xx_OPT.s
       Source file:   Drivers\CMSIS\Device\ST\STM32F3xx\Source\Templates\arm\startup_stm32f303x8.s
       Include file:  Drivers\CMSIS\Device\ST\STM32F3xx\Include\stm32f3xx.h
-Build Time Elapsed:  00:00:01
+      Source file:   MDK\Device\Source\ARM\STM32F3xx_OPT.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F3xx\Source\Templates\system_stm32f3xx.c
+Build Time Elapsed:  00:00:19
 </pre>
 </body>
 </html>

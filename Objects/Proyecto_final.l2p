@@ -1,0 +1,17 @@
+--cpu=Cortex-M4.fp.sp
+".\objects\main.o"
+".\objects\configusart.o"
+".\objects\basicfunctions.o"
+".\objects\basicfunctions_1.o"
+".\objects\stm32f3xx_hal.o"
+".\objects\stm32f3xx_hal_cortex.o"
+".\objects\stm32f3xx_hal_flash.o"
+".\objects\stm32f3xx_hal_flash_ex.o"
+".\objects\stm32f3xx_hal_gpio.o"
+".\objects\stm32f3xx_hal_rcc.o"
+".\objects\stm32f3xx_hal_rcc_ex.o"
+".\objects\startup_stm32f303x8.o"
+".\objects\system_stm32f3xx.o"
+--ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Proyecto_final.map" -o .\Objects\Proyecto_final.axf

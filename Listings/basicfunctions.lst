@@ -1,0 +1,70 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY, ALIGN=
+2
+    2 00000000                 THUMB
+    3 00000000                 REQUIRE8
+    4 00000000                 PRESERVE8
+    5 00000000         
+    6 00000000                 EXPORT           registers_to_array
+    7 00000000         
+    8 00000000         registers_to_array
+    9 00000000 B500            push             {lr}
+   10 00000002         
+   11 00000002 6000            str              r0,  [r0,#0x0]
+   12 00000004 6041            str              r1,  [r0,#0x4]
+   13 00000006 6082            str              r2,  [r0,#0x8]
+   14 00000008 60C3            str              r3,  [r0,#0xC]
+   15 0000000A 6104            str              r4,  [r0,#0x10]
+   16 0000000C 6145            str              r5,  [r0,#0x14]
+   17 0000000E 6186            str              r6,  [r0,#0x18]
+   18 00000010 61C7            str              r7,  [r0,#0x1C]
+   19 00000012 F8C0 8020       str              r8,  [r0,#0x20]
+   20 00000016 F8C0 9024       str              r9,  [r0,#0x24]
+   21 0000001A F8C0 A028       str              r10, [r0,#0x28]
+   22 0000001E F8C0 B02C       str              r11, [r0,#0x2C]
+   23 00000022 F8C0 C030       str              r12, [r0,#0x30]
+   24 00000026 F8C0 D034       str              r13, [r0,#0x34]
+   25 0000002A F8C0 E038       str              r14, [r0,#0x38]
+   26 0000002E BD00            pop              {pc}
+   27 00000030         
+   28 00000030                 end
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\basicfunctions_1.d -o.\objects\basicfunctions_1.o 
+-I.\RTE\Device\STM32F303K8Tx -I.\RTE\_Target_1 -IC:\Users\JAFM1\AppData\Local\A
+rm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include -IC:\Users\JAFM1\AppData\Local\Arm\
+Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include -IC:\U
+sers\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0\Drivers\STM32F3xx_H
+AL_Driver\Inc -IC:\Users\JAFM1\AppData\Local\Arm\Packs\Keil\STM32F3xx_DFP\2.2.0
+\Drivers\STM32F3xx_HAL_Driver\Inc\Legacy --predefine="__EVAL SETA 1" --predefin
+e="__UVISION_VERSION SETA 535" --predefine="_RTE_ SETA 1" --predefine="STM32F30
+3x8 SETA 1" --predefine="_RTE_ SETA 1" --list=.\listings\basicfunctions.lst bas
+icFunctions.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file basicFunctions.s
+   Uses
+      None
+Comment: .text unused
+registers_to_array 00000000
+
+Symbol: registers_to_array
+   Definitions
+      At line 8 in file basicFunctions.s
+   Uses
+      At line 6 in file basicFunctions.s
+Comment: registers_to_array used once
+2 symbols
+337 symbols in table

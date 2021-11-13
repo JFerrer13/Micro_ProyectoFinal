@@ -1,23 +1,5 @@
 #include "configUSART.h"
 
-char dato;
-char comando[64];
-uint8_t indice = 0;
-
-void USART2_IRQHandler() {
-	if(USART2->ISR & USART_ISR_RXNE){
-		dato = USART2->RDR;
-		
-		if(dato != '\r'){
-			comando[indice++] = dato;
-		}	else {
-			comando[indice++] = '\0';
-			indice = 0;
-			USART2_putString("\n\r>> ");
-		}
-	}
-}
-
 void USART2_config(uint32_t baudrate) {
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
 	RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
@@ -58,16 +40,35 @@ void welcomeMessage () {
 	USART2_putString("\t 13000522 - Javier Ferrer  \n\r");
 	USART2_putString("\n\r");
 	USART2_putString("HARDWARE  \n\r");
-	USART2_putString("\t I'm runnig over a STMF303k8t6  \n\r");
+	USART2_putString("\t I'm runnig over a STMF303k8t6\n\r");
 	USART2_putString("\n\r");
-	USART2_putString("\t If you need help type '--help' or '--h' to read the documentation   \n\r");
+	USART2_putString("\t If you need help type 'h' for some help\n\r");
 	USART2_putString("\n\r");
 	USART2_putString("\n\r");
 	
 	USART2_putString(">> ");
 }
+
+void unknownCommand() {
+	USART2_putString("                   _..\n\r");
+	USART2_putString("  /}_{\\           /.-'\n\r");
+	USART2_putString(" ( a a )-.___...-'/\n\r");
+	USART2_putString(" ==._.==         ;\n\r");
+	USART2_putString("      \\ i _..._ /,\n\r");
+	USART2_putString("      {_;/   {_//  Unknown command. Do you need help? type 'h' for help.\n\r\n\r");
+}
+
 void Fault() {
-	USART2_putString("FAULT  \n\r");
-	USART2_putString("Vamos a reiniciar el programa.  \n\r");
-	USART2_putString("...  \n\r");
+	USART2_putString("   |\\      _,,,---,,_\n\r");
+	USART2_putString("   /,`.-'`'    -.  ;-;;,_\n\r");
+	USART2_putString("  |,4-  ) )-,_..;\\ (  `'-'\n\r");
+	USART2_putString(" '---''(_/--'  `-'\\_)     FAULT! I'm restarting, please wait.\n\r");
+	USART2_putString("                          .....\n\r");
+}
+
+void showHelp () {
+	USART2_putString("      _._     _,-'""`-._\n\r");
+	USART2_putString("     (,-.`._,'(       |\\`-/|\n\r");
+	USART2_putString("         `-.-' \\ )-`( , o o)\n\r");
+	USART2_putString("               `-    \\`_`\"'- I'm helping... \n\r");
 }
