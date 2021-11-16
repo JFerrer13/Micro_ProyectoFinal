@@ -1,8 +1,8 @@
 #include "stm32f3xx.h"                  // Device header
 #include "string.h"
-
 #include "configUSART.h"
 #include "basicFunctions.h"
+#include "voltaje.h"
 
 char dato;
 char string[64];
@@ -36,6 +36,8 @@ int main () {
 				call();
 			} else if (strcmp(comando, "H") == 0){//----------Extra comnnads
 				showHelp();
+			} else if (strcmp(comando, "VIN") == 0){
+				leerAdc();
 			}else {
 				unknownCommand();
 			}
@@ -52,7 +54,11 @@ void USART2_IRQHandler() {
 		dato = USART2->RDR;
 		
 		if(dato != '\r'){
-			string[indice++] = dato - 32;
+			if(dato > 97 && dato < 122){
+				string[indice++] = dato - 32;
+			} else {
+				string[indice++] = dato;
+			}
 		}	else {
 			string[indice++] = '\0';
 			indice = 0;

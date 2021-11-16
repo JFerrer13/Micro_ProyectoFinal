@@ -67,8 +67,28 @@ void Fault() {
 }
 
 void showHelp () {
-	USART2_putString("      _._     _,-'""`-._\n\r");
-	USART2_putString("     (,-.`._,'(       |\\`-/|\n\r");
-	USART2_putString("         `-.-' \\ )-`( , o o)\n\r");
-	USART2_putString("               `-    \\`_`\"'- I'm helping... \n\r");
+	USART2_putString(" _._     _,-'""`-._\n\r");
+	USART2_putString("(,-.`._,'(       |\\`-/|\n\r");
+	USART2_putString("    `-.-' \\ )-`( , o o)\n\r");
+	USART2_putString("          `-    \\`_`\"'- I'm helping... \n\r");
+	USART2_putString("\n\r");
+	USART2_putString("Esta es la lista de comandos que puedes utilizar:   \n\r");
+	USART2_putString("\n\r");
+	USART2_putString("COMANDOS BASICOS\n\r");
+	USART2_putString("  Register Display  [RD]      Despliega el contenido de los registros del CPU.\n\r");
+	USART2_putString("  Register Modify   [RM]      Modifica el contenido del registro indicado en data.\n\r");
+	USART2_putString("  Memory Display    [MD]      Despliega el contenido de la memoria desde la direccion.\n\r");
+	USART2_putString("  Memory Modify     [MM]      Escribir datos en la dirección de memoria especificada.\n\r");
+	USART2_putString("  Block Fill        [BF]      Escribir datosen un rango de memoria especificado.\n\r");
+	USART2_putString("  Run               [RUN]     Ejecutar el código ubicado en la direccion especificada.\n\r");
+	USART2_putString("  Call              [CALL]    Ejecuta la subrutpuina ubicada en la direccion expecificada.\n\r");
+	USART2_putString("\n\r");
+	USART2_putString("COMANDOS ADICIONALES\n\r");
+	USART2_putString("  I/O Map       [IOMAP]       Asigna el estado de la entrada digital a la salida digital.\n\r");
+	USART2_putString("  I/O Unmap     [IOUNMAP]     Revierte todas las asignaciones de IO realizadas con IOMAP.\n\r");
+	USART2_putString("  Voltage In    [VIN]         Imprime el voltaje leido de la entrada analogica.\n\r");
+	USART2_putString("  Voltage Out   [VOUT]        Devuelve el voltaje indicado.\n\r");
+	USART2_putString("  MultiTap      [MULTITAP]    Habilita o deshabilita el teclado matricial.\n\r");
+	USART2_putString("  Arcade        [ARCADE]      Inicia el juego... espero...\n\r");
+  USART2_putString("\n\r");
 }
