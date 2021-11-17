@@ -4,7 +4,19 @@
         PRESERVE8
 
         EXPORT registers_to_array
-		
+		EXPORT cambiar_r1
+		EXPORT cambiar_r2
+		EXPORT cambiar_r3
+		EXPORT cambiar_r4
+		EXPORT cambiar_r5
+		EXPORT cambiar_r6
+		EXPORT cambiar_r7		
+		EXPORT cambiar_r8
+		EXPORT cambiar_r9
+		EXPORT cambiar_r10
+		EXPORT cambiar_r11
+		EXPORT cambiar_r12	
+			
 registers_to_array
 	push {lr}
 	
@@ -25,5 +37,53 @@ registers_to_array
 	str r14, [r0,#0x38]
 	pop {pc}
 
-	end
-	
+cambiar_r1
+	push {lr}
+	movs r1, r0
+	pop {pc}
+cambiar_r2
+	push {lr}
+	movs r2, r0
+	pop {pc}
+cambiar_r3
+	push {lr}
+	movs r3, r0
+	pop {pc}
+cambiar_r4
+	push {lr}
+	movs r4, r0
+	pop {pc}
+cambiar_r5
+	push {lr}
+	movs r5, r0
+	pop {pc}
+cambiar_r6
+	push {lr}
+	movs r6, r0
+	pop {pc}
+cambiar_r7
+	push {lr}
+	movs r7, r0
+	pop {pc}
+cambiar_r8
+	push {lr}
+	movs r8, r0
+	pop {pc}
+cambiar_r9
+	push {lr}
+	movs r9, r0
+	pop {pc}
+cambiar_r10
+	push {lr}
+	movs r10, r0
+	pop {pc}
+cambiar_r11
+	push {lr}
+	movs r11, r0
+	pop {pc}
+cambiar_r12
+	push {lr}
+	movs r12, r0
+	pop {pc}
+
+end
