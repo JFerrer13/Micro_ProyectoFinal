@@ -18,6 +18,9 @@
 		EXPORT cambiar_r12	
 		EXPORT reset
 		EXPORT desplegar_memoria
+		EXPORT cambiar_byte
+		EXPORT cambiar_half
+		EXPORT cambiar_word			
 			
 registers_to_array
 	push {lr}
@@ -96,12 +99,25 @@ desplegar_memoria
 	
 	pop {pc}
 
+cambiar_byte	
+	push {lr}
+	strb r1, [r0, #0x0]
+	pop {pc}
+
+cambiar_half
+	push {lr}
+	strh r1, [r0, #0x0]
+	pop {pc}
+
+cambiar_word
+	push {lr}
+	str r1, [r0, #0x0]	
+	pop {pc}
+
+
 reset	
 	
 	ldr r1, [r0, #0x0]
 	bx r1
-
-	end
-
-
+	
 end

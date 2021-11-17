@@ -22,6 +22,15 @@ char* finchar;
 uint32_t inicio;
 uint32_t fin;
 
+char* direccion;
+char* tamanio;
+char *datomm;
+uint32_t tamanioi;
+uint32_t direccioni;
+uint32_t datommi;
+uint32_t direccion_memoriamm;
+char string_desplegarmm[64];
+
 void rd () {
 	registers_to_array(arreglo);
 	contador = 0;
@@ -127,7 +136,52 @@ void md () {
 }
 
 void mm () {
-
+	direccion = strtok(0," ");
+	datomm = strtok(0," ");
+	tamanio = strtok(0," ");
+	
+	if(direccion[0] == '0' && direccion[1] == 'X'){
+		direccioni = strtoul(direccion, &puntero, 16);
+		if(datomm[0] == '0' && datomm[1] == 'X'){
+			datommi = strtoul(datomm, &puntero, 16);
+			if(tamanio == '\0'){
+				tamanioi = 0x1;	
+			} else {
+				tamanioi = strtol(tamanio, &puntero, 10);
+				
+				if (tamanioi == 1 || tamanioi == 2 || tamanioi == 4){
+					
+						switch(tamanioi)
+						{
+							case 1:
+									cambiar_byte(direccioni, datommi);
+									break;
+							case 2:
+									cambiar_half(direccioni, datommi);
+									break;
+							case 4:
+									cambiar_word(direccioni, datommi);
+									break;
+							default:
+									USART2_putString("\n El parametro size es invalido\r\n");
+									break;
+						}
+						
+						desplegar_memoria(&direccion_memoriamm,direccioni);
+						sprintf(string_desplegarmm,"%d: 0x%08x - 0x%08x\r\n",1,direccioni,direccion_memoriamm);
+						USART2_putString(string_desplegarmm);
+						
+				} else {
+					USART2_putString("El parametro size debe ser 1, 2 o 4 \r\n");
+				}
+			}
+		}else{
+			USART2_putString("El dato a asignar debe ser expresado en hexadecimal \r\n");
+		}
+	}else{
+		USART2_putString("La direccion debe ser expresada en hexadecimal \r\n");
+	}
+	
 }
 void bf () {
 
