@@ -18,8 +18,8 @@ int main () {
 	nuevoComando = 0;
 	
 	while (1){
-		comando = strtok(string, " ");
 		if (nuevoComando) {
+			comando = strtok(string, " ");
 			if(strcmp(comando, "RD") == 0){//-----------------Basic commands
 				rd();
 			} else if (strcmp(comando, "RM") == 0) {
