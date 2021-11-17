@@ -8,24 +8,27 @@
 char *puntero;
 uint32_t arreglo[15];
 char tmpString[64];
-uint8_t i;
+uint8_t contador;
 long numregistro;
 long nuevodatodec;
+uint32_t direccion_memoria;
+char string_desplegar[64];
 
 char *registro;
 char *nuevodato;
 
-char* inicio;
-char* fin;
-
+char* iniciochar;
+char* finchar;
+uint32_t inicio;
+uint32_t fin;
 
 void rd () {
 	registers_to_array(arreglo);
-	i = 0;
-	while(i <= 14){
-		sprintf(tmpString,"R%d = 0x%08x\r\n",i,arreglo[i]);
+	contador = 0;
+	while(contador <= 14){
+		sprintf(tmpString,"R%d = 0x%08x\r\n",contador,arreglo[contador]);
 		USART2_putString(tmpString);
-		i++;
+		contador++;
 	}
 }
 
@@ -78,16 +81,49 @@ void rm () {
 				cambiar_r12(nuevodatodec);
 				break;
 		default:
-				USART2_putString("Registro a modificar invalido \n");
+				USART2_putString("\nRegistro a modificar invalido \n");
 				break;
 	}
 	rd();
 }
 
 void md () {
-	inicio = strtok(0," ");
-	fin = strtok(0," ");
+	iniciochar = strtok(0," ");
+	finchar = strtok(0," ");
 	
+	if(iniciochar == '\0'){
+		inicio = strtoul("0x20000000", &puntero, 16);
+	}else{
+		if(iniciochar[0] == '0' && iniciochar[1] == 'X'){
+			inicio = strtoul(iniciochar, &puntero, 16);
+		}else{
+			USART2_putString("El parametro inicio debe ingresarlo en hexadecimal \r\n");
+		}
+	}
+	
+	if(finchar == '\0'){
+		fin = inicio;
+		fin += 10*4;
+	}else{
+		if(finchar[0] == '0' && finchar[1] == 'X'){
+			fin = strtoul(finchar, &puntero, 16);
+		}else{
+			USART2_putString("\nEl parametro fin debe ingresarlo en hexadecimal \r\n");
+		}
+	}
+	
+	if(inicio <= fin){
+		contador = 0;
+		while(inicio <= fin){
+			desplegar_memoria(&direccion_memoria,inicio);
+			sprintf(string_desplegar,"%d: 0x%08x - 0x%08x\r\n",contador+1,inicio,direccion_memoria);
+			USART2_putString(string_desplegar);
+			contador++;
+			inicio += 0x4;
+		}
+	} else {
+		USART2_putString("\nEl inicio es mayor al fin de los parametros ingresados \r\n");
+	}
 }
 
 void mm () {

@@ -17,6 +17,7 @@
 		EXPORT cambiar_r11
 		EXPORT cambiar_r12	
 		EXPORT reset
+		EXPORT desplegar_memoria
 			
 registers_to_array
 	push {lr}
@@ -85,6 +86,14 @@ cambiar_r11
 cambiar_r12
 	push {lr}
 	movs r12, r0
+	pop {pc}
+
+desplegar_memoria
+	push {lr}	
+	
+	ldr r2, [r1,#0x0]
+	str r2, [r0,#0x0]
+	
 	pop {pc}
 
 reset	

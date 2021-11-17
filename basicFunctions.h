@@ -13,7 +13,7 @@ extern void cambiar_r9(uint32_t dato);
 extern void cambiar_r10(uint32_t dato);
 extern void cambiar_r11(uint32_t dato);
 extern void cambiar_r12(uint32_t dato);
-
+extern void desplegar_memoria(uint32_t *reg_memoria, uint32_t vinicio);
 
 void rd (void);
 void rm (void);
