@@ -2,6 +2,7 @@
 
 extern void registers_to_array(uint32_t *registros);
 extern void cambiar_r1(uint32_t dato);
+extern void cambiar_r2(uint32_t dato);
 extern void cambiar_r3(uint32_t dato);
 extern void cambiar_r4(uint32_t dato);
 extern void cambiar_r5(uint32_t dato);

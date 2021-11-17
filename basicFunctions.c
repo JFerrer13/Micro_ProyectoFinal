@@ -11,8 +11,13 @@ char tmpString[64];
 uint8_t i;
 long numregistro;
 long nuevodatodec;
+
 char *registro;
 char *nuevodato;
+
+char* inicio;
+char* fin;
+
 
 void rd () {
 	registers_to_array(arreglo);
@@ -73,15 +78,18 @@ void rm () {
 				cambiar_r12(nuevodatodec);
 				break;
 		default:
-				USART2_putString("ningun registro ");
+				USART2_putString("Registro a modificar invalido \n");
 				break;
 	}
 	rd();
 }
 
 void md () {
-
+	inicio = strtok(0," ");
+	fin = strtok(0," ");
+	
 }
+
 void mm () {
 
 }

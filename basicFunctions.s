@@ -16,6 +16,7 @@
 		EXPORT cambiar_r10
 		EXPORT cambiar_r11
 		EXPORT cambiar_r12	
+		EXPORT reset
 			
 registers_to_array
 	push {lr}
@@ -85,5 +86,13 @@ cambiar_r12
 	push {lr}
 	movs r12, r0
 	pop {pc}
+
+reset	
+	
+	ldr r1, [r0, #0x0]
+	bx r1
+
+	end
+
 
 end

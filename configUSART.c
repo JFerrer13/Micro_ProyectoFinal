@@ -13,6 +13,7 @@ void USART2_config(uint32_t baudrate) {
 	USART2->CR1 |= USART_CR1_UE;
 	USART2->CR1 |= USART_CR1_RXNEIE;
 	NVIC_EnableIRQ(USART2_IRQn);
+	
 }
 
 void USART2_Send(uint8_t c){
@@ -55,15 +56,17 @@ void unknownCommand() {
 	USART2_putString(" ( a a )-.___...-'/\n\r");
 	USART2_putString(" ==._.==         ;\n\r");
 	USART2_putString("      \\ i _..._ /,\n\r");
-	USART2_putString("      {_;/   {_//  Unknown command. Do you need help? type 'h' for help.\n\r\n\r");
+	USART2_putString("      {_;/   {_//  No entiendo. ¿Necesitas ayuda? escribe 'h' en la consola.\n\r\n\r");
 }
 
 void Fault() {
 	USART2_putString("   |\\      _,,,---,,_\n\r");
 	USART2_putString("   /,`.-'`'    -.  ;-;;,_\n\r");
 	USART2_putString("  |,4-  ) )-,_..;\\ (  `'-'\n\r");
-	USART2_putString(" '---''(_/--'  `-'\\_)     FAULT! I'm restarting, please wait.\n\r");
+	USART2_putString(" '---''(_/--'  `-'\\_)     ERROR! Me voy a reiniciar.\n\r");
 	USART2_putString("                          .....\n\r");
+
+	reset(0x00000004);
 }
 
 void showHelp () {
