@@ -16,11 +16,13 @@
 		EXPORT cambiar_r10
 		EXPORT cambiar_r11
 		EXPORT cambiar_r12	
-		EXPORT reset
 		EXPORT desplegar_memoria
 		EXPORT cambiar_byte
 		EXPORT cambiar_half
-		EXPORT cambiar_word			
+		EXPORT cambiar_word	
+		EXPORT ejecutar
+		EXPORT ir_direccion
+		EXPORT reset	
 			
 registers_to_array
 	push {lr}
@@ -114,6 +116,11 @@ cambiar_word
 	str r1, [r0, #0x0]	
 	pop {pc}
 
+ejecutar
+  bx r0
+
+ir_direccion
+  blx r0
 
 reset	
 	

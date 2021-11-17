@@ -31,6 +31,15 @@ uint32_t datommi;
 uint32_t direccion_memoriamm;
 char string_desplegarmm[64];
 
+char* iniciobf;
+char* finbf;
+char *datobf;
+char* tamaniobf;
+uint32_t iniciobfi;
+uint32_t finbfi;
+uint32_t datobfi;
+uint32_t tamaniobfi;
+
 void rd () {
 	registers_to_array(arreglo);
 	contador = 0;
@@ -144,37 +153,39 @@ void mm () {
 		direccioni = strtoul(direccion, &puntero, 16);
 		if(datomm[0] == '0' && datomm[1] == 'X'){
 			datommi = strtoul(datomm, &puntero, 16);
+			
 			if(tamanio == '\0'){
 				tamanioi = 0x1;	
 			} else {
 				tamanioi = strtol(tamanio, &puntero, 10);
-				
-				if (tamanioi == 1 || tamanioi == 2 || tamanioi == 4){
-					
-						switch(tamanioi)
-						{
-							case 1:
-									cambiar_byte(direccioni, datommi);
-									break;
-							case 2:
-									cambiar_half(direccioni, datommi);
-									break;
-							case 4:
-									cambiar_word(direccioni, datommi);
-									break;
-							default:
-									USART2_putString("\n El parametro size es invalido\r\n");
-									break;
-						}
-						
-						desplegar_memoria(&direccion_memoriamm,direccioni);
-						sprintf(string_desplegarmm,"%d: 0x%08x - 0x%08x\r\n",1,direccioni,direccion_memoriamm);
-						USART2_putString(string_desplegarmm);
-						
-				} else {
-					USART2_putString("El parametro size debe ser 1, 2 o 4 \r\n");
-				}
 			}
+			
+			if (tamanioi == 1 || tamanioi == 2 || tamanioi == 4){
+				
+					switch(tamanioi)
+					{
+						case 1:
+								cambiar_byte(direccioni, datommi);
+								break;
+						case 2:
+								cambiar_half(direccioni, datommi);
+								break;
+						case 4:
+								cambiar_word(direccioni, datommi);
+								break;
+						default:
+								USART2_putString("\n El parametro size es invalido\r\n");
+								break;
+					}
+					
+					desplegar_memoria(&direccion_memoriamm,direccioni);
+					sprintf(string_desplegarmm,"%d: 0x%08x - 0x%08x\r\n",1,direccioni,direccion_memoriamm);
+					USART2_putString(string_desplegarmm);
+					
+			} else {
+				USART2_putString("El parametro size debe ser 1, 2 o 4 \r\n");
+			}
+			
 		}else{
 			USART2_putString("El dato a asignar debe ser expresado en hexadecimal \r\n");
 		}
@@ -184,11 +195,82 @@ void mm () {
 	
 }
 void bf () {
-
+	iniciobf = strtok(0," ");
+	finbf = strtok(0, " ");
+	datobf = strtok(0," ");
+	tamaniobf = strtok(0," ");
+	
+	if(tamaniobf == '\0'){
+		tamaniobfi = 0x1;	
+	} else {
+		tamaniobfi = strtol(tamaniobf, &puntero, 10);
+	}
+	
+	if(iniciobf[0] == '0' && iniciobf[1] == 'X'){
+		iniciobfi = strtoul(iniciobf, &puntero, 16);
+		if(finbf[0] == '0' && finbf[1] == 'X'){
+			finbfi = strtoul(finbf, &puntero, 16);
+			if(datobf[0] == '0' && datobf[1] == 'X'){
+				datobfi = strtoul(datobf, &puntero, 16);
+				if(iniciobfi <= finbfi){
+					if(tamaniobfi == 1 || tamaniobfi == 2 || tamaniobfi == 4){
+							while(iniciobfi <= finbfi){
+								switch(tamaniobfi)
+								{
+									case 1:
+											cambiar_byte(iniciobfi, datobfi);
+											break;
+									case 2:
+											cambiar_half(iniciobfi, datobfi);
+											break;
+									case 4:
+											cambiar_word(iniciobfi, datobfi);
+											break;
+									default:
+											USART2_putString("\n El parametro size es invalido\r\n");
+											break;
+								}
+								desplegar_memoria(&direccion_memoria,iniciobfi);
+								sprintf(string_desplegar,"%d: 0x%08x - 0x%08x\r\n",contador+1,iniciobfi,direccion_memoria);
+								USART2_putString(string_desplegar);
+								
+								iniciobfi += 0x4;
+								
+							}
+					}else{
+						USART2_putString("\nel tamanio ingresado no es valido \r\n");
+					}
+				} else {
+					USART2_putString("\nEl inicio es mayor al fin de los parametros ingresados \r\n");
+				}
+			}else{
+				USART2_putString("El dato a insertar debe ser expresado en hexadecimal \r\n");
+			}
+		}else{
+			USART2_putString("La direccion fin debe ser expresada en hexadecimal \r\n");
+		}
+	}else{
+		USART2_putString("La direccion inicio debe ser expresada en hexadecimal \r\n");
+	}
+	
 }
+
 void run () {
-
+  direccion = strtok(0," ");
+  if(direccion[0] == '0' && direccion[1] == 'X'){
+    direccioni = strtoul(direccion, &puntero, 16);
+    ejecutar(direccioni);
+  } else {
+    USART2_putString("La direccion debe ser expresada en hexadecimal \r\n");
+  }
 }
-void call () {
 
+void call () {
+  direccion = strtok(0," ");
+  if(direccion[0] == '0' && direccion[1] == 'X'){
+    direccioni = strtoul(direccion, &puntero, 16);
+    ir_direccion(direccioni);
+  } else {
+    USART2_putString("La direccion debe ser expresada en hexadecimal \r\n");
+  }
 }

@@ -17,6 +17,8 @@ extern void desplegar_memoria(uint32_t *reg_memoria, uint32_t vinicio);
 extern void cambiar_byte(uint32_t direccion, uint32_t dato);
 extern void cambiar_half(uint32_t direccion, uint32_t dato);
 extern void cambiar_word(uint32_t direccion, uint32_t dato);
+extern void ir_direccion(uint32_t direccion);
+extern void ejecutar(uint32_t direccion);
 
 void rd (void);
 void rm (void);
