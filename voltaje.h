@@ -2,4 +2,5 @@
 
 uint16_t leerAnalogo(void);
 void configurar_adc(void);
-void leerAdc();
+void leerAdc(void);
+void colocar_voltaje(void);

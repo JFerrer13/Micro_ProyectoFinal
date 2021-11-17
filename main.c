@@ -38,6 +38,8 @@ int main () {
 				showHelp();
 			} else if (strcmp(comando, "VIN") == 0){
 				leerAdc();
+			} else if (strcmp(comando, "VOUT") == 0){
+				colocar_voltaje();
 			}else {
 				unknownCommand();
 			}
