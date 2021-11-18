@@ -39,6 +39,9 @@ uint32_t iniciobfi;
 uint32_t finbfi;
 uint32_t datobfi;
 uint32_t tamaniobfi;
+uint32_t direccion_memoriabfi;
+char string_desplegarbfi[64];
+uint8_t contadorbfi;
 
 void rd () {
 	registers_to_array(arreglo);
@@ -214,6 +217,7 @@ void bf () {
 				datobfi = strtoul(datobf, &puntero, 16);
 				if(iniciobfi <= finbfi){
 					if(tamaniobfi == 1 || tamaniobfi == 2 || tamaniobfi == 4){
+							contadorbfi = 0;
 							while(iniciobfi <= finbfi){
 								switch(tamaniobfi)
 								{
@@ -230,9 +234,9 @@ void bf () {
 											USART2_putString("\n El parametro size es invalido\r\n");
 											break;
 								}
-								desplegar_memoria(&direccion_memoria,iniciobfi);
-								sprintf(string_desplegar,"%d: 0x%08x - 0x%08x\r\n",contador+1,iniciobfi,direccion_memoria);
-								USART2_putString(string_desplegar);
+								desplegar_memoria(&direccion_memoriabfi,iniciobfi);
+								sprintf(string_desplegarbfi,"%d: 0x%08x - 0x%08x\r\n",contadorbfi+1,iniciobfi,direccion_memoriabfi);
+								USART2_putString(string_desplegarbfi);
 								
 								iniciobfi += 0x4;
 								
@@ -274,3 +278,4 @@ void call () {
     USART2_putString("La direccion debe ser expresada en hexadecimal \r\n");
   }
 }
+

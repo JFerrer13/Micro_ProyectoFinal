@@ -56,7 +56,7 @@ void USART2_IRQHandler() {
 		dato = USART2->RDR;
 		
 		if(dato != '\r'){
-			if(dato > 97 && dato < 122){
+			if(dato >= 97 && dato <= 122){
 				string[indice++] = dato - 32;
 			} else {
 				string[indice++] = dato;
